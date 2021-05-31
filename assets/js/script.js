@@ -50,8 +50,11 @@ var endScreen = document.querySelector(".end-screen");
 var highScore = document.querySelector(".high-score");
 var header = document.querySelector(".header");
 var time = document.querySelector(".time");
+var scoreScreen = document.querySelector(".score-screen");
+var users = [];
 var count = 0;
 var points = 0;
+var idCounter = 0;
 var timeLeft = 80;
 
 var createQuestion = function () {
@@ -96,7 +99,18 @@ var end = function() {
     endScreen.style.display = "inline-block";
 
     document.querySelector(".high-score-info").innerHTML += "Congrats! You got " + points + " points!";
-    // endScreen.innerHTML += ""
+
+    document.querySelector("#save-name").addEventListener("click", function () {
+        var UserInstance = {
+            name: document.getElementById("userName").value,
+            points: points,
+            id: idCounter
+        };
+        users.push(UserInstance);
+        saveUser();
+        idCounter++;
+        highScoreScreen();
+    });
 }
 
 var highScoreScreen = function() {
@@ -104,8 +118,18 @@ var highScoreScreen = function() {
     endScreen.style.display = "none";
     startScreen.style.display = "none";
     header.style.display = "none";
-    
-    alert("hi");
+    scoreScreen.style.display = "inline-block";
+
+    var scoreList = document.querySelector(".score-list");
+
+    for(var i = 0; i < users.length; i++) {
+        var listItem = document.createElement("li");
+        listItem.className = "quizListItem";
+        listItem.innerHTML = users[i].name + "-" + users[i].points;
+        scoreList.appendChild(listItem);
+        
+    }
+
 }
 
 var countdown = function() {
@@ -124,10 +148,36 @@ var countdown = function() {
     }, 1000);
 }
 
+var loadUser = function() {
+    var savedItems = localStorage.getItem("users");
+    if(!savedItems) {
+        return false;
+    }
+    savedItems = JSON.parse(savedItems);
+    idCounter = savedItems[savedItems.length -1].id + 1;
+    
+    users = savedItems;
+    console.log(savedItems);
+}
+
+var saveUser = function() {
+    localStorage.setItem("users", JSON.stringify(users));
+    
+}
+
+var deleteAll = function() {
+    users = [];
+    saveUser();
+}
+
+document.querySelector("#delete-all").addEventListener("click", deleteAll);
+
 highScore.addEventListener("click", highScoreScreen);
 startQuiz.addEventListener("click", () => {
     createQuestion();
     countdown();
 });
+loadUser();
+
 
 

@@ -15,6 +15,7 @@ header {
     
 }
 
-.end-screen {
+.end-screen,
+.score-screen {
     display: none;
 }

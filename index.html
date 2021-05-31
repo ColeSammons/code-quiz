@@ -25,9 +25,15 @@
         <h1>All Finished!</h1>
         <p class="high-score-info"></p>
         <div class="playerInput">
-            <input type="text" name="playerName" placeholder="Enter Name" />
+            <input id="userName" type="text" name="playerName" placeholder="Enter Name" />
             <button class="btn" id="save-name" type="submit">Submit</button>
         </div>
+    </div>
+    <div class="score-screen">
+        <h1>High Scores</h1>
+        <ul class="score-list"></ul>
+        <button  class="button" id="go-back" onClick="window.location.reload();">Go Back</button>
+        <button class="btn" type="submit" id="delete-all" onClick="window.location.reload();">Delete All Scores</button>
     </div>
     <script src="./assets/js/script.js"></script>
 </body>
