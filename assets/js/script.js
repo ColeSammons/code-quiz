@@ -60,7 +60,7 @@ var timeLeft = 80;
 var createQuestion = function () {
     startScreen.style.display = "none";
 
-    if(count === myQuestions.length) {
+    if (count === myQuestions.length) {
         end();
         return false;
     }
@@ -71,22 +71,22 @@ var createQuestion = function () {
     var ansC = myQuestions[count].c;
     var ansD = myQuestions[count].d;
 
-    quiz.innerHTML = "<h1> " + question + " </h1>";
+    quiz.innerHTML = "<h1 class= 'text-secondary'> " + question + " </h1>";
 
-    quiz.innerHTML += "<button id='answerButton' type='radio' value='a' onclick='checkAnswer(this.value)'>" + ansA + "</button><br>";
-    quiz.innerHTML += "<button id='answerButton' type='radio' value='b' onclick='checkAnswer(this.value)'>" + ansB + "</button><br>";
-    quiz.innerHTML += "<button id='answerButton' type='radio' value='c' onclick='checkAnswer(this.value)'>" + ansC + "</button><br>";
-    quiz.innerHTML += "<button id='answerButton' type='radio' value='d' onclick='checkAnswer(this.value)'>" + ansD + "</button><br>";
+    quiz.innerHTML += "<button id='answerButton' class='btn btn-primary btn-lg' type='radio' value='a' onclick='checkAnswer(this.value)'>" + ansA + "</button><br>";
+    quiz.innerHTML += "<button id='answerButton' class='btn btn-primary btn-lg' type='radio' value='b' onclick='checkAnswer(this.value)'>" + ansB + "</button><br>";
+    quiz.innerHTML += "<button id='answerButton' class='btn btn-primary btn-lg' type='radio' value='c' onclick='checkAnswer(this.value)'>" + ansC + "</button><br>";
+    quiz.innerHTML += "<button id='answerButton' class='btn btn-primary btn-lg' type='radio' value='d' onclick='checkAnswer(this.value)'>" + ansD + "</button><br>";
 };
 
 var checkAnswer = function (clicked_value) {
     console.log(clicked_value);
-    if(clicked_value === myQuestions[count].correctAnswer) {
-        console.log("correct!");
+    if (clicked_value === myQuestions[count].correctAnswer) {
+        alert("correct!");
         points += 5;
     }
     else {
-        console.log("Wrong!");
+        alert("Wrong!");
         points -= 3;
         timeLeft -= 10;
     }
@@ -94,7 +94,7 @@ var checkAnswer = function (clicked_value) {
     createQuestion();
 };
 
-var end = function() {
+var end = function () {
     quiz.style.display = "none";
     endScreen.style.display = "inline-block";
 
@@ -113,7 +113,7 @@ var end = function() {
     });
 }
 
-var highScoreScreen = function() {
+var highScoreScreen = function () {
     quiz.style.display = "none";
     endScreen.style.display = "none";
     startScreen.style.display = "none";
@@ -122,52 +122,54 @@ var highScoreScreen = function() {
 
     var scoreList = document.querySelector(".score-list");
 
-    for(var i = 0; i < users.length; i++) {
+    for (var i = 0; i < users.length; i++) {
         var listItem = document.createElement("li");
-        listItem.className = "quizListItem";
+        listItem.className = "quizListItem bg-secondary text-warning";
         listItem.innerHTML = users[i].name + "-" + users[i].points;
         scoreList.appendChild(listItem);
-        
+
     }
 
 }
 
-var countdown = function() {
-    var timeInterval = setInterval(function() {
-        if(timeLeft === -1) {
+var countdown = function () {
+    var timeInterval = setInterval(function () {
+        if (timeLeft === -1) {
             clearInterval(timeInterval);
             end();
         }
-        else if(count === myQuestions.length) {
+        else if (count === myQuestions.length) {
             clearInterval(timeInterval);
         }
         else {
-        time.textContent = "Time: " + timeLeft;
-        timeLeft--;
+            time.textContent = "Time: " + timeLeft;
+            time.className = "text-dark";
+            timeLeft--;
         }
     }, 1000);
 }
 
-var loadUser = function() {
+var loadUser = function () {
     var savedItems = localStorage.getItem("users");
-    if(!savedItems) {
+    if (!savedItems) {
         return false;
     }
     savedItems = JSON.parse(savedItems);
-    idCounter = savedItems[savedItems.length -1].id + 1;
-    
+    if (savedItems[savedItems.length - 1].id > 0) {
+        idCounter = savedItems[savedItems.length - 1].id + 1;
+    }
+
     users = savedItems;
     console.log(savedItems);
 }
 
-var saveUser = function() {
+var saveUser = function () {
     localStorage.setItem("users", JSON.stringify(users));
-    
+
 }
 
-var deleteAll = function() {
-    users = [];
-    saveUser();
+var deleteAll = function () {
+    localStorage.removeItem("users");
 }
 
 document.querySelector("#delete-all").addEventListener("click", deleteAll);

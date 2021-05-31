@@ -1,21 +1,31 @@
+* {
+    margin: 5px;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
 .quizListItem {
     list-style-type: none;
 }
 
-/* body {
+.start-screen,
+.score-screen,
+body {
     text-align: center;
-} */
+    
+}
 
 header {
     display: flex;
     justify-content: space-between;
 }
 
-.quiz {
-    
-}
-
 .end-screen,
 .score-screen {
     display: none;
+}
+
+#answerButton {
+    width: 200px;
+    margin-bottom: 10px;
 }

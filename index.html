@@ -6,19 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
     <header class="header">
-        <a class="high-score " href="#">View high score</a>
-        <div class="time">Time: </div>
+        <button class="high-score btn btn-success" href="#">View high score</button>
+        <div class="time text-secondary">Time: </div>
     </header>
     <div class="start-screen">
-        <h1>Code Quiz</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi illum at atque id unde libero ullam possimus
-            eius, voluptates eligendi natus delectus exercitationem aliquam odio fugit ab? Iure, odio quos.</p>
-        <button id="start-quiz">Start Quiz</button>
+        <h1 >Code Quiz</h1>
+        <p>Work your way through the quiz before the time runs out! Points for right and wrong answers will be added up at the end!</p>
+        <button id="start-quiz" class="btn btn-primary">Start Quiz</button>
     </div>
     <div class="quiz"></div>
     <div class="end-screen">
@@ -26,14 +26,14 @@
         <p class="high-score-info"></p>
         <div class="playerInput">
             <input id="userName" type="text" name="playerName" placeholder="Enter Name" />
-            <button class="btn" id="save-name" type="submit">Submit</button>
+            <button class="btn btn-info" id="save-name" type="submit">Submit</button>
         </div>
     </div>
     <div class="score-screen">
-        <h1>High Scores</h1>
+        <h1 class="text-secondary">High Scores</h1>
         <ul class="score-list"></ul>
-        <button  class="button" id="go-back" onClick="window.location.reload();">Go Back</button>
-        <button class="btn" type="submit" id="delete-all" onClick="window.location.reload();">Delete All Scores</button>
+        <button  class="btn-lg btn btn-dark" id="go-back" onClick="window.location.reload();">Go Back</button>
+        <button class="btn-lg btn-danger btn" type="submit" id="delete-all" onClick="window.location.reload();">Delete All Scores</button>
     </div>
     <script src="./assets/js/script.js"></script>
 </body>
