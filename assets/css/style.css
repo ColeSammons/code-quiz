@@ -1,0 +1,20 @@
+.quizListItem {
+    list-style-type: none;
+}
+
+/* body {
+    text-align: center;
+} */
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.quiz {
+    
+}
+
+.end-screen {
+    display: none;
+}
