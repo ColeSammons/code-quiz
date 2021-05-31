@@ -56,6 +56,7 @@ var count = 0;
 var points = 0;
 var idCounter = 0;
 var timeLeft = 80;
+var answer = "";
 
 var createQuestion = function () {
     startScreen.style.display = "none";
@@ -77,16 +78,25 @@ var createQuestion = function () {
     quiz.innerHTML += "<button id='answerButton' class='btn btn-primary btn-lg' type='radio' value='b' onclick='checkAnswer(this.value)'>" + ansB + "</button><br>";
     quiz.innerHTML += "<button id='answerButton' class='btn btn-primary btn-lg' type='radio' value='c' onclick='checkAnswer(this.value)'>" + ansC + "</button><br>";
     quiz.innerHTML += "<button id='answerButton' class='btn btn-primary btn-lg' type='radio' value='d' onclick='checkAnswer(this.value)'>" + ansD + "</button><br>";
+    if(answer === true) {
+        quiz.innerHTML += "<h2 class='border-top border-3 border-dark text-success'>Correct! <br/>+5 points</>";
+    }
+    else if(answer === false) {
+        quiz.innerHTML += "<h2 class='border-top border-3 border-dark text-danger'>Wrong! <br/>-10 seconds <br/>-3 points</>";
+    }
+    else{
+        quiz.innerHTML += "";
+    }
 };
 
 var checkAnswer = function (clicked_value) {
     console.log(clicked_value);
     if (clicked_value === myQuestions[count].correctAnswer) {
-        alert("correct!");
         points += 5;
+        answer = true;
     }
     else {
-        alert("Wrong!");
+        answer = false;
         points -= 3;
         timeLeft -= 10;
     }

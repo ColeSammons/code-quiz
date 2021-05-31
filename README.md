@@ -5,7 +5,7 @@ Options to view high scores are also available.
 
 ## URL
 
-
+ https://colesammons.github.io/code-quiz/
 
 ## Editor
 
