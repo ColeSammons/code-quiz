@@ -124,7 +124,7 @@ var highScoreScreen = function () {
 
     for (var i = 0; i < users.length; i++) {
         var listItem = document.createElement("li");
-        listItem.className = "quizListItem bg-secondary text-warning";
+        listItem.className = "quizListItem bg-secondary text-warning p-2";
         listItem.innerHTML = users[i].name + "-" + users[i].points;
         scoreList.appendChild(listItem);
 
